@@ -13,8 +13,10 @@ class ZhuanlanSpider(scrapy.Spider):
 
     def login(self,response):
     	xsrf = response.xpath('//input[@name="_xsrf"]/@value').extract_first()
+    	email = input('input your rmail')
+    	password = input('input your password')
     	return [scrapy.FormRequest('https://www.zhihu.com/login/email',
-                                   formdata={'remember_me':'true','email': 'rrygyidy@sharklasers.com', 'password': 'abc987', '_xsrf': xsrf},
+                                   formdata={'remember_me':'true','email': email, 'password': password, '_xsrf': xsrf},
                                    callback=self.logged_in)]
 
     def logged_in(self,response):
